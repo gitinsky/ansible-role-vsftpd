@@ -1,0 +1,9 @@
+- name: setup vsftpd
+  yum: name=vsftpd state=present
+
+- name: add vsftpd.conf
+  template: src=vsftpd/vsftpd.conf dest=/etc/vsftpd/vsftpd.conf owner=root group=root mode=0600
+  notify: restart vsftpd
+
+- name: start vsftpd
+  service: name=vsftpd state=started enabled=yes
